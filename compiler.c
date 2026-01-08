@@ -12,11 +12,15 @@ int main()
         printf("Could not read file.");
     } else {
         while (fgets(inputLine, 100, fptr)) {
-            char command[9];
-            strncpy(command, inputLine, 8);
-            strcat(command, "\0");
-            if (strcmp(command, "🖨️")) {
-                printf("%s", command);
+            char tokens[10];
+            char *ptr = strtok(inputLine, " ");
+            while (ptr != NULL) {
+                printf("%s\n", ptr);
+                if (strcmp(ptr, "🖨️")) {
+                    ptr = strtok(NULL, " ");
+                    printf("%s", ptr);
+                }
+                ptr = strtok(NULL, " ");
             }
         }
     }
